@@ -1,0 +1,16 @@
+# Enable C++ support
+language: cpp
+# Compiler selection
+compiler:
+  - g++
+  - clang
+
+os:
+    - linux
+    # - osx
+
+# Build steps
+script:
+  - mkdir build && cd build
+  - cmake -Dtest=ON .. && make -j8
+  - ./tests
