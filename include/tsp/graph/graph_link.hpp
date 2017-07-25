@@ -1,20 +1,26 @@
-#pragma once
+#ifndef TSP_GRAPH_LINK
+#define TSP_GRAPH_LINK
 
-#include <tsp/graph/graph_node.hpp>
-
-template <typename T>
 class GraphLink {
 
     private:
-        GraphNode<T> *from;
-        GraphNode<T> *to;
+        void *to;
         float cost;
 
     public:
 
-        GraphLink(GraphNode<T> &source, GraphNode<T> &dest, float cost) {
-            this->from = &source;
-            this->to = &dest;
+        GraphLink(void *dest, float cost) {
+            this->to = dest;
             this->cost = cost;
         }
+
+        void* getDestination() {
+            return this->to;
+        }
+
+        float getCost() {
+            return this->cost;
+        }
 };
+
+#endif

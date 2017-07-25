@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TSP_CIDADE
+#define TSP_CIDADE
 
 class Cidade {
 
@@ -17,3 +18,5 @@ class Cidade {
         void setPremio(float premio);
 
 };
+
+#endif
