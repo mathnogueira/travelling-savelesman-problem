@@ -18,7 +18,7 @@ TEST(Graph, doesNotAllowDuplicates) {
     ASSERT_EQ(graph.getNumberNodes(), 3);
 }
 
-TEST(Graph, getCostOfMovingBetweenNodes) {
+TEST(Graph, getNumberOfConnectionsOfANode) {
     Graph<int> graph;
 
     int i = 3;

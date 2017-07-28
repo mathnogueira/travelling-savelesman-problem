@@ -16,7 +16,8 @@ class GraphNode {
             this->content = content;
         }
 
-        void addLink(GraphLink *link) {
+        void addLink(GraphNode<T> *to, float cost) {
+            GraphLink* link = new GraphLink(to, cost);
             links.push_back(link);
         }
 
