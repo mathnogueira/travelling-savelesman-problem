@@ -1,37 +1,41 @@
 #ifndef TSP_GRAPH
 #define TSP_GRAPH
 
+#include <tsp/utils/collection.hpp>
 #include <tsp/graph/graph_node.hpp>
 #include <tsp/graph/graph_link.hpp>
 
-#include <vector>
 #include <cstdlib>
 
 template <typename T>
 class Graph {
 
     private:
-        std::vector<GraphNode<T>*> nodes;
+        Collection<GraphNode<T>*> nodes;
         GraphNode<T> *startNode;
 
         GraphNode<T>* createOrRetrieveNode(T &nodeContent) {
+            GraphNode<T> *node = retrieveNode(nodeContent);
+            return node != NULL ? node : new GraphNode<T>(&nodeContent);
+        }
+
+        void addNodeIfNotExists(GraphNode<T>* newNode) {
+            for (size_t i = 0; i < nodes.count(); ++i) {
+                if (nodes.at(i) == newNode) return;
+            }
+            nodes.add(newNode);
+        }
+
+        GraphNode<T>* retrieveNode(T &nodeContent) {
             GraphNode<T> *node = NULL;
             std::size_t i = 0;
-            while (node == NULL && i < nodes.size()) {
+            while (node == NULL && i < nodes.count()) {
                 if (nodes.at(i)->getContent() == &nodeContent) {
                     node = nodes.at(i);
                 }
                 ++i;
             }
-            
-            return node != NULL ? node : new GraphNode<T>(&nodeContent);
-        }
-
-        void addNodeIfNotExists(GraphNode<T>* newNode) {
-            for (size_t i = 0; i < nodes.size(); ++i) {
-                if (nodes.at(i) == newNode) return;
-            }
-            nodes.push_back(newNode);
+            return node;
         }
 
     public:
@@ -50,11 +54,15 @@ class Graph {
         }
 
         void setInitialNode(T &node) {
-            for (short i = 0; i < nodes.size(); ++i) {
+            for (short i = 0; i < nodes.count(); ++i) {
                 if (&node == nodes.at(i)->getContent()) {
                     this->startNode = nodes.at(i);
                 }
             }
+        }
+
+        float getCostFrom(T &source, T &dest) {
+            GraphNode<T> *node = retrieveNode(source);
         }
 
         GraphNode<T>* getNode(unsigned short position) {
@@ -62,7 +70,7 @@ class Graph {
         }
 
         int getNumberNodes() {
-            return nodes.size();
+            return nodes.count();
         }
 };
 

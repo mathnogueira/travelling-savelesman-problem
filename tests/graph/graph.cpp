@@ -31,3 +31,18 @@ TEST(Graph, getNumberOfConnectionsOfANode) {
     ASSERT_TRUE(node != NULL);
     ASSERT_EQ(node->getNumberLinks(), 2);
 }
+
+TEST(Graph, getCostOfMovingFromANodeToAnother) {
+    Graph<int> graph;
+
+    int i = 8;
+    int j = 33;
+    int k = 12;
+
+    graph.add(i, j, 8);
+    graph.add(i, j, 33);
+    graph.add(j, k, 12);
+
+    // float cost = graph.getCostFrom(i, j);
+    // ASSERT_EQ(cost, 8);
+}
