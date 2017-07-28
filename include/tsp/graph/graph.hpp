@@ -39,17 +39,6 @@ class Graph {
         ~Graph() {}
 
         void add(T &source, T &destination, float cost) {
-            // GraphNode<T> src(&source);
-            // GraphNode<T> dest(&destination);
-
-            // GraphNode<T> *nodeSrc = addOrRetrieveOld(src);
-            // GraphNode<T> *nodeDest = addOrRetrieveOld(dest);
-
-            // GraphLink *linkDestToSrc = new GraphLink(nodeSrc, cost);
-            // GraphLink *linkSrcToDest = new GraphLink(nodeDest, cost);
-
-            // nodeSrc->addLink(linkSrcToDest);
-            // nodeDest->addLink(linkDestToSrc);
             GraphNode<T> *sourceNode = createOrRetrieveNode(source);
             GraphNode<T> *destinationNode = createOrRetrieveNode(destination);
 
