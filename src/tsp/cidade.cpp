@@ -1,7 +1,9 @@
 #include <tsp/models/cidade.hpp>
 
-Cidade::Cidade() {
+int Cidade::nextId = 1;
 
+Cidade::Cidade() {
+    this->id = Cidade::nextId++;
 }
 
 Cidade::~Cidade() {

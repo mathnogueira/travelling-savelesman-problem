@@ -1,11 +1,15 @@
 #ifndef TSP_CIDADE
 #define TSP_CIDADE
 
-class Cidade {
+#include <tsp/utils/identificable.hpp>
+
+class Cidade : public Identificable {
 
     private:
         float premio;
         float prejuizo;
+
+        static int nextId;
 
     public:
         Cidade();
@@ -16,6 +20,10 @@ class Cidade {
 
         float getPremio();
         void setPremio(float premio);
+
+        int compareTo(Identificable &other) {
+            return id - other.getId();
+        }
 
 };
 
