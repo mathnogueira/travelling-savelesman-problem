@@ -1,6 +1,7 @@
 #ifndef TSP_COLLECTIONS
 #define TSP_COLLECTIONS
 
+#include <cstdlib>
 #include <vector>
 #include <functional>
 
