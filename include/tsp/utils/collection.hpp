@@ -10,7 +10,6 @@ class Collection {
     private:
 
         std::vector<T> items;
-        std::function<void(T)> fn;
 
     public:
 
@@ -25,16 +24,16 @@ class Collection {
             return items.size();
         }
 
-        Collection* filter(std::function<bool(T)> fn) {
-            Collection<T> *result = new Collection<T>();
-            for (size_t i = 0; i < items.size(); ++i) {
-                T item = items.at(i);
-                if (fn(item)) {
-                    result->add(item);
-                }
-            }
-            return result;
-        }
+        // Collection* filter(std::function<bool(T)> fn) {
+        //     Collection<T> *result = new Collection<T>();
+        //     for (size_t i = 0; i < items.size(); ++i) {
+        //         T item = items.at(i);
+        //         if (fn(item)) {
+        //             result->add(item);
+        //         }
+        //     }
+        //     return result;
+        // }
 
         T firstOrDefault() {
             if (items.size() == 0) {
