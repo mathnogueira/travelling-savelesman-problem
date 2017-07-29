@@ -10,7 +10,7 @@ class Collection {
     private:
 
         std::vector<T> items;
-        std::function<void(int)> fn;
+        std::function<void(T)> fn;
 
     public:
 
@@ -26,7 +26,7 @@ class Collection {
         }
 
         Collection* filter(std::function<bool(T)> fn) {
-            Collection *result = new Collection<int>();
+            Collection<T> *result = new Collection<T>();
             for (size_t i = 0; i < items.size(); ++i) {
                 T item = items.at(i);
                 if (fn(item)) {
@@ -36,15 +36,19 @@ class Collection {
             return result;
         }
 
-        T* firstOrDefault() {
+        T firstOrDefault() {
             if (items.size() == 0) {
                 return NULL;
             }
 
-            return &items.at(0);
+            return items.at(0);
         }
 
-        T at(int index) {
+        T first() {
+            return items.at(0);
+        }
+
+        T& at(int index) {
             return items.at(index);
         }
 

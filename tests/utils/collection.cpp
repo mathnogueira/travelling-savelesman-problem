@@ -15,9 +15,8 @@ TEST(Collection, canFilterUsingLambdas) {
     ASSERT_EQ(collection->count(), 5);
     ASSERT_EQ(filtered->count(), 2);
 
-    int* firstElement = filtered->firstOrDefault();
-    ASSERT_FALSE(firstElement == NULL);
-    ASSERT_EQ(*firstElement, 18);
+    int firstElement = filtered->first();
+    ASSERT_EQ(firstElement, 18);
 }
 
 TEST(Collection, canAccessUsingArrayOperator) {

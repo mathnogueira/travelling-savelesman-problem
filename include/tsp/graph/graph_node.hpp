@@ -2,14 +2,14 @@
 #define TSP_GRAPH_NODE
 
 #include <tsp/graph/graph_link.hpp>
-#include <vector>
+#include <tsp/utils/collection.hpp>
 
 template <typename T>
 class GraphNode {
 
     private:
         T *content;
-        std::vector<GraphLink*> links;
+        Collection<GraphLink*> links;
 
     public:
         GraphNode(T *content) {
@@ -18,15 +18,19 @@ class GraphNode {
 
         void addLink(GraphNode<T> *to, float cost) {
             GraphLink* link = new GraphLink(to, cost);
-            links.push_back(link);
+            links.add(link);
         }
 
         unsigned short getNumberLinks() {
-            return links.size();
+            return links.count();
         }
 
         T* getContent() {
             return content;
+        }
+
+        Collection<GraphLink*>* getLinks() {
+            return &links;
         }
 };
 

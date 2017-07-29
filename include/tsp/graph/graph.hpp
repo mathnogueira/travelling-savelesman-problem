@@ -6,6 +6,7 @@
 #include <tsp/graph/graph_link.hpp>
 
 #include <cstdlib>
+#include <limits>
 
 template <typename T>
 class Graph {
@@ -62,7 +63,33 @@ class Graph {
         }
 
         float getCostFrom(T &source, T &dest) {
-            GraphNode<T> *node = retrieveNode(source);
+
+            GraphNode<T> *sourceNode = NULL;
+            for (size_t i = 0; i < nodes.count(); ++i) {
+                if (nodes.at(i)->getContent() == &source) {
+                    sourceNode = nodes.at(i);
+                }
+            }
+
+            if (sourceNode == NULL) {
+                return std::numeric_limits<float>::infinity();
+            }
+
+            Collection<GraphLink*> *links = sourceNode->getLinks();
+            GraphLink *correctLink = NULL;
+            for (size_t i = 0; i < links->count(); ++i) {
+                GraphLink *link = links->at(i);
+                GraphNode<T> *from = (GraphNode<T>*) link->getDestination();
+                if (from->getContent() == &dest) {
+                    correctLink = link;
+                }
+            }
+
+            if (correctLink == NULL) {
+                return std::numeric_limits<float>::infinity();
+            }
+
+            return correctLink->getCost();
         }
 
         GraphNode<T>* getNode(unsigned short position) {
