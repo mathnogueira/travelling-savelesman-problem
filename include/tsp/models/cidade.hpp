@@ -13,6 +13,7 @@ class Cidade : public Identificable {
 
     public:
         Cidade();
+        Cidade(unsigned int id);
         ~Cidade();
 
         float getPrejuizo();

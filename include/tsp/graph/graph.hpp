@@ -62,6 +62,10 @@ class Graph {
             }
         }
 
+        GraphNode<T>* getInitialNode() {
+            return startNode;
+        }
+
         float getCostFrom(T &source, T &dest) {
 
             GraphNode<T> *sourceNode = NULL;
@@ -98,6 +102,10 @@ class Graph {
 
         int getNumberNodes() {
             return nodes.count();
+        }
+
+        Collection<GraphNode<T>*>* getAllNodes() {
+            return &nodes;
         }
 };
 

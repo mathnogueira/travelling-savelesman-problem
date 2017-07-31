@@ -4,6 +4,14 @@ int Cidade::nextId = 1;
 
 Cidade::Cidade() {
     this->id = Cidade::nextId++;
+    this->prejuizo = 0;
+    this->premio = 0;
+}
+
+Cidade::Cidade(unsigned int id) {
+    this->id = id;
+    this->prejuizo = 0;
+    this->premio = 0;
 }
 
 Cidade::~Cidade() {
