@@ -1,17 +1,17 @@
 #include <tsp/models/cidade.hpp>
 
-int Cidade::nextId = 1;
+Cidade::Cidade(unsigned int id) : Cidade(id, 0, 0) {}
 
-Cidade::Cidade() {
-    this->id = Cidade::nextId++;
-    this->prejuizo = 0;
-    this->premio = 0;
+Cidade::Cidade(unsigned int id, float premio, float prejuizo) {
+    this->id = id;
+    this->prejuizo = prejuizo;
+    this->premio = premio;
 }
 
-Cidade::Cidade(unsigned int id) {
-    this->id = id;
-    this->prejuizo = 0;
-    this->premio = 0;
+Cidade::Cidade(IdGenerator &idGenerator, float premio, float prejuizo) {
+    this->id = idGenerator.generateId();
+    this->prejuizo = prejuizo;
+    this->premio = premio;
 }
 
 Cidade::~Cidade() {

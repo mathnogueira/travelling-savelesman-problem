@@ -2,6 +2,7 @@
 #define TSP_CIDADE
 
 #include <tsp/utils/identificable.hpp>
+#include <tsp/utils/id_generator.hpp>
 
 class Cidade : public Identificable {
 
@@ -9,11 +10,10 @@ class Cidade : public Identificable {
         float premio;
         float prejuizo;
 
-        static int nextId;
-
     public:
-        Cidade();
         Cidade(unsigned int id);
+        Cidade(unsigned int id, float premio, float prejuizo);
+        Cidade(IdGenerator &idGenerator, float premio, float prejuizo);
         ~Cidade();
 
         float getPrejuizo();

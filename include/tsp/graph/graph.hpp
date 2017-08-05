@@ -7,12 +7,13 @@
 
 #include <cstdlib>
 #include <limits>
+#include <vector>
 
 template <typename T>
 class Graph {
 
     private:
-        Collection<GraphNode<T>*> nodes;
+        std::vector<GraphNode<T>*> nodes;
         GraphNode<T> *startNode;
 
         GraphNode<T>* createOrRetrieveNode(T &nodeContent) {
@@ -21,16 +22,16 @@ class Graph {
         }
 
         void addNodeIfNotExists(GraphNode<T>* newNode) {
-            for (size_t i = 0; i < nodes.count(); ++i) {
+            for (size_t i = 0; i < nodes.size(); ++i) {
                 if (nodes.at(i) == newNode) return;
             }
-            nodes.add(newNode);
+            nodes.push_back(newNode);
         }
 
         GraphNode<T>* retrieveNode(T &nodeContent) {
             GraphNode<T> *node = NULL;
             std::size_t i = 0;
-            while (node == NULL && i < nodes.count()) {
+            while (node == NULL && i < nodes.size()) {
                 if (nodes.at(i)->getContent() == &nodeContent) {
                     node = nodes.at(i);
                 }
@@ -55,7 +56,7 @@ class Graph {
         }
 
         void setInitialNode(T &node) {
-            for (short i = 0; i < nodes.count(); ++i) {
+            for (short i = 0; i < nodes.size(); ++i) {
                 if (&node == nodes.at(i)->getContent()) {
                     this->startNode = nodes.at(i);
                 }
@@ -69,7 +70,7 @@ class Graph {
         float getCostFrom(T &source, T &dest) {
 
             GraphNode<T> *sourceNode = NULL;
-            for (size_t i = 0; i < nodes.count(); ++i) {
+            for (size_t i = 0; i < nodes.size(); ++i) {
                 if (nodes.at(i)->getContent() == &source) {
                     sourceNode = nodes.at(i);
                 }
@@ -79,9 +80,9 @@ class Graph {
                 return std::numeric_limits<float>::infinity();
             }
 
-            Collection<GraphLink*> *links = sourceNode->getLinks();
+            std::vector<GraphLink*> *links = sourceNode->getLinks();
             GraphLink *correctLink = NULL;
-            for (size_t i = 0; i < links->count(); ++i) {
+            for (size_t i = 0; i < links->size(); ++i) {
                 GraphLink *link = links->at(i);
                 GraphNode<T> *from = (GraphNode<T>*) link->getDestination();
                 if (from->getContent() == &dest) {
@@ -101,11 +102,11 @@ class Graph {
         }
 
         int getNumberNodes() {
-            return nodes.count();
+            return nodes.size();
         }
 
-        Collection<GraphNode<T>*>* getAllNodes() {
-            return &nodes;
+        std::vector<GraphNode<T>*> getAllNodes() {
+            return nodes;
         }
 };
 

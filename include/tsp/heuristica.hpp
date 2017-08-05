@@ -15,6 +15,12 @@ class Heuristica {
         GraphNode<Cidade>* getNextNodeToVisit(GraphNode<Cidade> *node);
         float getStopThreshold(Graph<Cidade> *graph);
 
+    private:
+        std::vector<int> *visitedNodes;
+        bool nodeAlreadyVisited(void *nodePtr);
+        float getPremio(GraphNode<Cidade> *node);
+        float getPrejuizo(GraphNode<Cidade> *node);
+
 };
 
 #endif
