@@ -1,6 +1,10 @@
 #include <tsp/models/cidade.hpp>
 
-Cidade::Cidade(unsigned int id) : Cidade(id, 0, 0) {}
+Cidade::Cidade(unsigned int id) {
+    this->id = id;
+    this->prejuizo = 0;
+    this->premio = 0;
+}
 
 Cidade::Cidade(unsigned int id, float premio, float prejuizo) {
     this->id = id;

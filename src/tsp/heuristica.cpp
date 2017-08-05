@@ -41,7 +41,6 @@ GraphNode<Cidade>* Heuristica::getNextNodeToVisit(GraphNode<Cidade> *node) {
         }
     }
 
-    std::cout << bestCost << std::endl;
     if (bestLink == NULL) return NULL;
     GraphNode<Cidade> *cidadeNode = (GraphNode<Cidade>*) bestLink->getDestination();
     return cidadeNode;
